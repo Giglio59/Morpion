@@ -1,0 +1,25 @@
+table{
+    width : 450px;
+    height : 450px;
+    border : solid 3px black;
+  
+}
+td{
+    
+        border : solid 3px black;
+          
+        width : 33%;
+        height : 33%;
+        
+}
+
+button{
+   
+    margin-top: 3%;
+}
+
+.aligne{
+   display: flex;
+    flex-direction: column;
+    align-items: center; 
+}
