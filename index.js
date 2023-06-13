@@ -93,6 +93,7 @@ function clickOnCase(event) {
     if (Joueur === "X") {
       dataX.push(parseInt(Case.getAttribute("data-index")));
     } else {
+        Case.style.color = "red"; // Définir la couleur rouge pour les symboles "O"  
       dataO.push(parseInt(Case.getAttribute("data-index")));
     }
   }
