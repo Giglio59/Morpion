@@ -1,8 +1,10 @@
 "use strict"
-var dataX = [], dataO =[];
+const dataX = [], dataO =[];
 
 //Information utile//
 const message = document.querySelector("h2")
+console.log(message);
+console.dir(message);
 let jeuOn = true
 
 
@@ -15,7 +17,7 @@ const Victoire = [[1, 2, 3], [4, 5, 6],[7, 8, 9],[1, 4, 7],
 
 // Les message d'information //
 function gagnant(prevjoueurX){
-    return  ` Le joueur ${joueurX} a gagner !` 
+    return  ` Le joueur ${prevjoueurX} a gagner !` 
 }
 
 function egaliter(){
@@ -29,32 +31,34 @@ function tour(){
 // Le joueur qu commence 
 let prevjoueurX ="X"
 
-function click(event){ console.log(event);
-    if (occupé(event))
-    {tour()}
-    else{  let data = event.getAttribute("data-index"); 
-        placesymbole(event.target,prevjoueurX);
-        dataX.push(parseInt(data));
-        dataO.push(parseInt(data));
-        if (victoireVerif())
-        {
-            gagnant()
-        }
-        else if (verifegaliter()) {
-            egaliter()
-        }
-        else{
-            changeJoueur()
-        }
-    }
+function clickOnCase(event) {
+  console.log(event);
+  if (occupe(event)) {
+    console.log("coucou");
+    tour();
+  } else {
+    let data = event.getAttribute("data-index");
+    placesymbole(event,prevjoueurX);
+    //dataX.push(parseInt.click(data));
+    changeJoueur(event);console.log(changeJoueur)
+    //if (victoireVerif(event)) {
+      gagnant();
+    //} else if (verifegaliter(event)) {
+    //  egaliter();
+    //} else {
+      
+   // }
+  }
 }
 
 
 
   
 
-  function occupé(event){
-    if (event.target.textContent == ""){
+  function occupe(event){
+    console.log("occuper():",event);
+    console.dir(event)
+    if (event.innerText === ""){
         return false
     }
     else{
@@ -62,28 +66,32 @@ function click(event){ console.log(event);
     }
   }
   
-  function changeJoueur(){
-    if (prevjoueurX == "X"){
+  function changeJoueur(event){
+    console.log("coucou3");
+    if (prevjoueurX === "X"){
         prevjoueurX = "O"
+        tour()
     }
     else{
         prevjoueurX = "X"
+        tour()
     }
   }
 
   function placesymbole(Case,Joueur){
+    console.dir(Case,Joueur)
     Case.textContent = Joueur;
     
 
   }
 
 
-  function verifegaliter(){
+  function verifegaliter(event){
     let v=false
     let m=0
     while(v==false && m<ted.length){
     if (ted[m].textContent == ""){
-        v=false
+        v=false; console.dir(ted[m]);
     }
     m++;
     } 
@@ -101,7 +109,7 @@ function click(event){ console.log(event);
     } return o
   }
 
-  function msn() {
+  function msn(event) {
     ted.forEach(function (element) {
       element.textContent = "";
     });
