@@ -15,17 +15,17 @@ let ted = document.querySelectorAll("td")
 const Victoire = [[1, 2, 3], [4, 5, 6],[7, 8, 9],[1, 4, 7],
                 [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7] ]
 
-// Les message d'information //
+// Message affiché lorsque le joueur gagne
 function gagnant(prevjoueurX) {
     let gagnantJoueur = prevjoueurX === "X" ? "O" : "X";
     return `Le joueur ${gagnantJoueur} a gagné !`;
   }
-
+// Message affiché en cas d'égalité
 function egaliter(){
    
     return` Egalité !` 
 }
-
+// Affiche le message pour indiquer le tour du joueur etafficeh message egalité
 function tour() {
     if (jeuOn) {
       if (verifegaliter()) {
@@ -38,7 +38,7 @@ function tour() {
   
   
 
-// Le joueur qu commence 
+// Fonction appelée lorsqu'une case est cliquée
 let prevjoueurX ="X"
 
 function clickOnCase(event) {
@@ -58,9 +58,7 @@ function clickOnCase(event) {
     }
   }
 
-
-
-  
+// Vérifie si une case est occupée
 
   function occupe(event){
     console.log("occuper():",event);
@@ -72,7 +70,9 @@ function clickOnCase(event) {
         return true
     }
   }
-  
+
+  // Change le joueur actuel
+
   function changeJoueur(event){
     console.log("coucou3");
     if (prevjoueurX === "X"){
@@ -85,6 +85,8 @@ function clickOnCase(event) {
     }
   }
 
+  // Place le symbole du joueur dans la case
+
   function placesymbole(Case, Joueur) {
     console.dir(Case, Joueur);
     Case.textContent = Joueur;
@@ -95,6 +97,7 @@ function clickOnCase(event) {
     }
   }
 
+// Vérifie s'il y a égalité en parcourant toutes les cases
 
   function verifegaliter(event){
     let v=true
@@ -109,6 +112,8 @@ function clickOnCase(event) {
     return v;
     
   }
+
+  // Vérifie s'il y a une victoire en parcourant les combinaisons possibles
 
   function victoireVerif(event){
     let o = false 
@@ -132,6 +137,8 @@ function clickOnCase(event) {
     
 
   }
+
+  // Réinitialise le jeu
 
   function msn(event) {
     ted.forEach(function (element) {
