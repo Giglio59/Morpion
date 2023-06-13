@@ -16,25 +16,34 @@ const Victoire = [[1, 2, 3], [4, 5, 6],[7, 8, 9],[1, 4, 7],
                 [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7] ]
 
 // Les message d'information //
-function gagnant(prevjoueurX){
-    return  ` Le joueur ${prevjoueurX} a gagner !` 
-}
+function gagnant(prevjoueurX) {
+    let gagnantJoueur = prevjoueurX === "X" ? "O" : "X";
+    return `Le joueur ${gagnantJoueur} a gagné !`;
+  }
 
 function egaliter(){
-   return` Egalité !` 
+   
+    return` Egalité !` 
 }
 
-function tour(){
-    return message.innerHTML = ` c'est au tour du joueur ${prevjoueurX}  !` 
-}
+function tour() {
+    if (jeuOn) {
+      if (verifegaliter()) {
+        message.innerHTML = egaliter();
+      } else {
+        message.innerHTML = `C'est au tour du joueur ${prevjoueurX} !`;
+      }
+    }
+  }
+  
+  
 
 // Le joueur qu commence 
 let prevjoueurX ="X"
 
 function clickOnCase(event) {
     console.log(event);
-    if (occupe(event)) {
-      console.log("coucou");
+    if (occupe(event) || !jeuOn) {
       tour();
     } else {
       let data = event.getAttribute("data-index");
@@ -42,6 +51,7 @@ function clickOnCase(event) {
       changeJoueur(event);
       if (victoireVerif()) {
         message.innerHTML = gagnant(prevjoueurX);
+        jeuOn = false;
       } else if (verifegaliter()) {
         message.innerHTML = egaliter();
       }
@@ -75,11 +85,14 @@ function clickOnCase(event) {
     }
   }
 
-  function placesymbole(Case,Joueur){
-    console.dir(Case,Joueur)
+  function placesymbole(Case, Joueur) {
+    console.dir(Case, Joueur);
     Case.textContent = Joueur;
-    
-
+    if (Joueur === "X") {
+      dataX.push(parseInt(Case.getAttribute("data-index")));
+    } else {
+      dataO.push(parseInt(Case.getAttribute("data-index")));
+    }
   }
 
 
@@ -92,8 +105,9 @@ function clickOnCase(event) {
     }
     m++ ; 
     } 
-    return v;
     egaliter();
+    return v;
+    
   }
 
   function victoireVerif(event){
@@ -113,8 +127,9 @@ function clickOnCase(event) {
         }
         w++ ;
     } 
-    return o;
     gagnant()
+    return o;
+    
 
   }
 
@@ -126,6 +141,7 @@ function clickOnCase(event) {
     dataO = [];
     message.innerHTML = "";
     prevjoueurX = "X";
+    jeuOn = true;
   }
 
 
