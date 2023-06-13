@@ -4,6 +4,13 @@ table{
     border : solid 3px black;
   
 }
+.td{
+    text-align: center;
+    align-items: center;
+    font-size: 8vw;
+    color: green;
+}
+
 td{
     
         border : solid 3px black;
