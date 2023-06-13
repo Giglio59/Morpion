@@ -1,5 +1,5 @@
 "use strict"
-const dataX = [], dataO =[];
+let dataX = [], dataO =[];
 
 //Information utile//
 const message = document.querySelector("h2")
@@ -32,24 +32,21 @@ function tour(){
 let prevjoueurX ="X"
 
 function clickOnCase(event) {
-  console.log(event);
-  if (occupe(event)) {
-    console.log("coucou");
-    tour();
-  } else {
-    let data = event.getAttribute("data-index");
-    placesymbole(event,prevjoueurX);
-    //dataX.push(parseInt.click(data));
-    changeJoueur(event);console.log(changeJoueur)
-    //if (victoireVerif(event)) {
-      gagnant();
-    //} else if (verifegaliter(event)) {
-    //  egaliter();
-    //} else {
-      
-   // }
+    console.log(event);
+    if (occupe(event)) {
+      console.log("coucou");
+      tour();
+    } else {
+      let data = event.getAttribute("data-index");
+      placesymbole(event, prevjoueurX);
+      changeJoueur(event);
+      if (victoireVerif()) {
+        message.innerHTML = gagnant(prevjoueurX);
+      } else if (verifegaliter()) {
+        message.innerHTML = egaliter();
+      }
+    }
   }
-}
 
 
 
@@ -87,15 +84,16 @@ function clickOnCase(event) {
 
 
   function verifegaliter(event){
-    let v=false
+    let v=true
     let m=0
-    while(v==false && m<ted.length){
-    if (ted[m].textContent == ""){
+    while(v===true && m<ted.length){
+    if (ted[m].textContent === ""){
         v=false; console.dir(ted[m]);
     }
-    m++;
+    m++ ; 
     } 
-    return v
+    return v;
+    egaliter();
   }
 
   function victoireVerif(event){
@@ -103,10 +101,21 @@ function clickOnCase(event) {
     let w = 0 
   
     while(o == false && w< Victoire.length){
-        if ( (dataX.includes(Victoire[w][0])&& dataX.includes(Victoire[w][1])&& dataX.includes(Victoire[w][2]))|| (dataO.includes(Victoire[w][0])&& dataO.includes(Victoire[w][1])&& dataO.includes(Victoire[w][2]))){
+        if ( 
+        (dataX.includes(Victoire[w][0])&&
+        dataX.includes(Victoire[w][1])&&
+        dataX.includes(Victoire[w][2]))|| 
+        (dataO.includes(Victoire[w][0])&&
+        dataO.includes(Victoire[w][1])&&
+        dataO.includes(Victoire[w][2]))
+        ){
             o = true
         }
-    } return o
+        w++ ;
+    } 
+    return o;
+    gagnant()
+
   }
 
   function msn(event) {
