@@ -91,6 +91,7 @@ function clickOnCase(event) {
     console.dir(Case, Joueur);
     Case.textContent = Joueur;
     if (Joueur === "X") {
+      Case.style.color = "green"; // Définir la couleur verte pour les symboles "X" 
       dataX.push(parseInt(Case.getAttribute("data-index")));
     } else {
         Case.style.color = "red"; // Définir la couleur rouge pour les symboles "O"  
@@ -151,8 +152,6 @@ function clickOnCase(event) {
     prevjoueurX = "X";
     jeuOn = true;
   }
-
-
 
 
 
